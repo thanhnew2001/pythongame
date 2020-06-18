@@ -1,0 +1,60 @@
+import turtle
+import random
+
+
+window = turtle.Screen()
+window.setup(400,300)
+window.tracer(0)
+
+head = turtle.Turtle()
+head.shape("turtle")
+head.color("blue")
+head.penup()
+
+bomb = turtle.Turtle()
+bomb.shape("square")
+bomb.color("red")
+x = random.randint(-180, 180)
+y = random.randint(-120, 120)
+bomb.penup()
+bomb.goto(x, y)
+
+
+def up():
+    head.forward(10)
+
+def down():
+    head.backward(10)
+
+def left():
+    head.left(90)
+
+def right():
+    head.right(90)
+
+# Keyboard bindings
+window.listen()
+window.onkeypress(up, "Up")
+window.onkeypress(down, "Down")
+window.onkeypress(left, "Left")
+window.onkeypress(right, "Right")
+
+title = turtle.Turtle()
+title.penup()
+title.hideturtle()
+title.goto(-20,0)
+
+a = 1
+
+while a==1:
+    head.forward(1)
+    if(head.distance(x, y)<=10):
+        title.write("Bingo", font=("Arial", 16))
+        a = 0
+
+    if(head.xcor()>200 or head.xcor()<-200  or head.ycor()>150 or head.xcor()<-150):
+        title.write("Game over", font=("Arial", 16))
+        a = 0
+    window.update()
+
+b = input('wait')
